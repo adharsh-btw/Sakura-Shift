@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sakura Shift – Japan, from tradition to throttle</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Shippori+Mincho:wght@800&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap">
+<style>
+:root{--bg:#0e1030;--fg:#fff;--ac:#ff4d5e;--ac2:#ffd23f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:400 1.05rem/1.6 "Zen Kaku Gothic New",system-ui,sans-serif;transition:background .7s,color .7s;overflow-x:hidden}
+h1,h2,.num{font-family:"Dela Gothic One","Zen Kaku Gothic New",Impact,sans-serif;font-weight:400}
+#bar{position:fixed;top:0;left:0;height:5px;width:0;background:var(--ac);z-index:9}
+section{min-height:100vh;min-height:100svh;padding:5.5rem 6vw 4rem;position:relative;overflow:hidden;display:grid;gap:2.5rem;align-content:center}
+.wrap{display:grid;gap:2.5rem;grid-template-columns:1.1fr .9fr;align-items:center}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}}
+.k{position:absolute;right:-2vw;bottom:-6vw;font:400 min(55vw,34rem)/1 "Dela Gothic One",serif;color:var(--ac);opacity:.14;pointer-events:none}
+.jp{color:var(--ac2);font-weight:900;font-size:1.05rem;margin-bottom:.6rem}
+h1{font-size:clamp(3.4rem,13vw,9.5rem);line-height:.95}
+h2{font-size:clamp(2.2rem,7vw,4.8rem);line-height:1.02;margin-bottom:1rem}
+.lead{max-width:48ch;font-size:1.15rem;margin-bottom:1.4rem}
+.stats{display:flex;flex-wrap:wrap;gap:1.2rem 2.2rem;margin-bottom:1.6rem}
+.num{font-size:clamp(2.2rem,6vw,3.6rem);color:var(--ac2);line-height:1}
+.stats small{display:block;font-size:.85rem;opacity:.85}
+.grid{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.c{background:rgba(255,255,255,.1);border:2px solid var(--ac);border-radius:14px;padding:.8rem 1rem;cursor:pointer;transition:transform .2s,background .2s;position:relative}
+.c:hover,.c:focus-visible{transform:translateY(-4px) rotate(-.6deg);background:rgba(255,255,255,.2);outline:none}
+.c b{font-size:1.1rem;display:block;padding-right:1.4rem}
+.c b::after{content:"+";position:absolute;right:1rem;color:var(--ac2);font-weight:900;transition:transform .3s}
+.c.open b::after{transform:rotate(45deg)}
+.c span{display:block;max-height:0;overflow:hidden;opacity:0;transition:max-height .45s,opacity .45s}
+.c.open span{max-height:12rem;opacity:1;margin-top:.4rem}
+.hint{font-size:.85rem;opacity:.8;margin-top:.8rem}
+.ph{aspect-ratio:4/5;border-radius:22px;border:3px solid var(--ac2);overflow:hidden;display:grid;place-items:center;text-align:center;background:repeating-linear-gradient(45deg,rgba(255,255,255,.08) 0 14px,rgba(255,255,255,.14) 14px 28px);box-shadow:12px 12px 0 var(--ac);transform:rotate(1.5deg);transition:transform .4s}
+.ph:hover{transform:rotate(0)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph div{padding:1rem;font-weight:700}
+.ph div b{display:block;font:400 4rem/1 "Dela Gothic One",serif;color:var(--ac2)}
+[data-t=hero]{--bg:#0e1030;--ac:#ff4d5e;--ac2:#ffc2d1}
+[data-t=culture]{--bg:#1b0f2e;--fg:#fff3dc;--ac:#ff6b3d;--ac2:#ffd27a}
+[data-t=martial]{--bg:#1c1917;--fg:#f5efe6;--ac:#c8102e;--ac2:#e9c46a}
+[data-t=trip]{--bg:#0b5d8f;--fg:#fff;--ac:#ffffff;--ac2:#ffe27a}
+[data-t=food]{--bg:#ffb703;--fg:#2b1205;--ac:#c1272d;--ac2:#7a1010}
+[data-t=anime]{--bg:#2a0a54;--fg:#fff;--ac:#ff3cac;--ac2:#3ef4ff}
+[data-t=drift]{--bg:#09090b;--fg:#f2f2f2;--ac:#ff2e88;--ac2:#f5ff3b}
+[data-t=f1]{--bg:#d1141a;--fg:#fff;--ac:#111;--ac2:#fff}
+[data-t=end]{--bg:#0e1030;--fg:#fff;--ac:#ff4d5e;--ac2:#ffc2d1}
+.sun{position:absolute;width:min(70vw,560px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#ff4d5e 0 62%,#c1121f 100%);right:-12vw;top:50%;transform:translateY(-50%);box-shadow:0 0 120px #ff4d5e66;animation:pulse 6s ease-in-out infinite}
+@keyframes pulse{50%{transform:translateY(-50%) scale(1.06)}}
+.tick{position:absolute;left:0;bottom:0;width:100%;overflow:hidden;white-space:nowrap;background:var(--ac);color:#fff;padding:.5rem 0;font:700 1.1rem "Zen Kaku Gothic New",sans-serif}
+.tick div{display:inline-block;animation:mq 28s linear infinite}
+.tick i{font-style:normal;margin:0 1.6rem}
+@keyframes mq{to{transform:translateX(-50%)}}
+.track{position:relative;height:70px;margin:.4rem 0 1.2rem;border-bottom:3px dashed var(--ac2)}
+.trail{position:absolute;left:0;bottom:6px;height:6px;width:0;background:linear-gradient(90deg,transparent,var(--ac));border-radius:3px}
+.car{position:absolute;bottom:8px;left:0;font-size:3rem;line-height:1;transition:transform .15s}
+.speed{display:flex;align-items:baseline;gap:.5rem}
+#petals{position:fixed;inset:0;pointer-events:none;z-index:4}
+nav{position:fixed;right:.9rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.7rem;z-index:8}
+nav a{width:12px;height:12px;border-radius:50%;border:2px solid var(--ac2);display:block}
+nav a.on{background:var(--ac2)}
+
+.wrap{z-index:1}
+.fxl{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.fxc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.lan{position:absolute;bottom:-60px;width:34px;height:44px;border-radius:12px 12px 14px 14px;background:radial-gradient(circle at 50% 40%,#fff1b0,#ff9a3c 60%,#c1272d);box-shadow:0 0 28px 10px rgba(255,150,60,.55);animation:rise linear infinite;opacity:.9}
+@keyframes rise{0%{transform:translate(0,0)}50%{transform:translate(18px,-60vh)}100%{transform:translate(-12px,-130vh)}}
+.sky{position:absolute;inset:0;background:linear-gradient(#e4572e,#f29e4c);opacity:calc(var(--p,0)*.6);z-index:0;pointer-events:none}
+.tor{position:absolute;left:50%;bottom:12%;width:300px;height:230px;margin-left:-150px;transform-origin:50% 100%;opacity:0;background:linear-gradient(#d1141a,#d1141a) 0 0/100% 16px no-repeat,linear-gradient(#a50f14,#a50f14) 50% 46px/86% 9px no-repeat,linear-gradient(#d1141a,#d1141a) 14% 0/13px 100% no-repeat,linear-gradient(#d1141a,#d1141a) 86% 0/13px 100% no-repeat}
+.fuji{position:absolute;left:50%;bottom:0;width:min(120vw,900px);margin-left:calc(min(120vw,900px)/-2);z-index:0;transform:translateY(60%);pointer-events:none}
+.cld{position:absolute;height:40px;border-radius:40px;background:rgba(255,255,255,.55);filter:blur(2px);z-index:0;pointer-events:none}
+.c1{width:220px;top:14%;left:-250px;animation:drf 60s linear infinite}
+.c2{width:300px;top:30%;left:-350px;animation:drf 90s linear -30s infinite}
+@keyframes drf{to{transform:translateX(calc(100vw + 700px))}}
+[data-t=food]{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><path d='M2 2L26 30M8 1L31 25' stroke='%237a1010' stroke-width='3' stroke-linecap='round'/></svg>") 2 2,auto}
+[data-t=food] .c:hover,[data-t=food] .c:focus-visible{box-shadow:0 0 22px 4px #ff7b00,inset 0 0 14px #ffd27a;background:rgba(255,120,0,.28)}
+.bowl{position:absolute;right:7vw;top:1.2rem;font-size:4.2rem;line-height:1;z-index:0;pointer-events:none}
+.st{position:absolute;bottom:70%;width:12px;height:42px;border-radius:50%;background:rgba(255,255,255,.8);filter:blur(7px);animation:steam 2.6s ease-in infinite}
+.st:nth-child(1){left:22%}.st:nth-child(2){left:44%;animation-delay:.8s}.st:nth-child(3){left:64%;animation-delay:1.6s}
+@keyframes steam{0%{transform:translateY(0) scaleX(1);opacity:0}30%{opacity:.85}100%{transform:translateY(-70px) translateX(10px) scaleX(2.4);opacity:0}}
+.ht{position:absolute;inset:0;background:radial-gradient(circle,var(--ac) 22%,transparent 24%) 0 0/22px 22px;opacity:.16;-webkit-mask:linear-gradient(135deg,#000,transparent 60%);mask:linear-gradient(135deg,#000,transparent 60%);pointer-events:none}
+.spd{position:absolute;inset:-20%;background:repeating-conic-gradient(from 0deg at 50% 50%,var(--ac2) 0 .6deg,transparent .6deg 6deg);opacity:0;-webkit-mask:radial-gradient(circle,transparent 25%,#000 70%);mask:radial-gradient(circle,transparent 25%,#000 70%);pointer-events:none}
+.in .spd{animation:burst 1.1s ease-out forwards}
+@keyframes burst{0%{opacity:0;transform:scale(.3)}25%{opacity:.5}100%{opacity:.14;transform:scale(1.15)}}
+.snd{position:absolute;font:400 clamp(2.2rem,8vw,5.5rem)/1 "Dela Gothic One","Zen Kaku Gothic New",sans-serif;color:var(--ac2);-webkit-text-stroke:2px #000;paint-order:stroke fill;text-shadow:5px 5px 0 var(--ac);opacity:0;z-index:2;pointer-events:none}
+.s1{left:4vw;top:12%;--r:-9deg}.s2{right:8vw;top:6%;--r:6deg}.s3{right:5vw;bottom:10%;--r:-5deg}
+.in .snd{animation:slam 2.6s cubic-bezier(.2,1.6,.4,1) forwards}
+.in .s2{animation-delay:.35s}.in .s3{animation-delay:.7s}
+@keyframes slam{0%{opacity:0;transform:scale(3.2) rotate(var(--r))}15%{opacity:1;transform:scale(1) rotate(var(--r))}75%{opacity:1}100%{opacity:0;transform:scale(1) rotate(var(--r))}}
+.str{position:absolute;left:-30%;width:30%;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,var(--ac2));box-shadow:0 0 12px var(--ac2);animation:str 2.2s linear infinite}
+@keyframes str{to{transform:translateX(500%)}}
+.smoke{position:absolute;bottom:4px;width:22px;height:22px;border-radius:50%;background:rgba(220,220,220,.6);filter:blur(5px);animation:smk .9s ease-out forwards;pointer-events:none}
+@keyframes smk{to{transform:translate(-30px,-24px) scale(3.2);opacity:0}}
+.shake{animation:shk .35s}
+@keyframes shk{20%{transform:translate(-5px,3px)}40%{transform:translate(5px,-3px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(3px,2px)}}
+.lights{display:flex;gap:.7rem;margin:.2rem 0 1.2rem}
+.lights i{width:clamp(34px,8vw,52px);aspect-ratio:1;border-radius:50%;background:#2a0305;border:3px solid #000;transition:background .1s,box-shadow .1s}
+.lights i.on{background:#ff1a1a;box-shadow:0 0 22px #ff1a1a}
+.go h2{animation:launch .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes launch{from{transform:translateX(-12%) skewX(-10deg);filter:blur(6px)}}
+.flagw{position:absolute;left:0;bottom:0;width:100%;height:56px;overflow:hidden;z-index:2;pointer-events:none}
+.flag{height:100%;background:conic-gradient(#fff 25%,#111 0 50%,#fff 0 75%,#111 0) 0 0/56px 56px;transform:translateX(-101%);transition:transform 1.2s cubic-bezier(.6,0,.2,1)}
+.flag.wipe{transform:translateX(0)}
+.slash{position:absolute;top:-10%;left:0;width:8px;height:120%;background:linear-gradient(transparent,#fff,transparent);box-shadow:0 0 24px 6px #fff,0 0 60px 12px var(--ac);transform:translateX(-10vw) skewX(-20deg);opacity:0;z-index:3;pointer-events:none}
+.in .slash{animation:cut .8s ease-in forwards}
+@keyframes cut{0%{opacity:1;transform:translateX(-10vw) skewX(-20deg)}100%{opacity:0;transform:translateX(115vw) skewX(-20deg)}}
+[data-t=martial] .wrap{clip-path:polygon(-40% 0,-30% 0,-60% 100%,-70% 100%);transition:clip-path .8s ease-in}
+[data-t=martial].in .wrap{clip-path:polygon(-20% 0,130% 0,130% 100%,-20% 100%)}
+.kan{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin:.2rem 0 1.4rem}
+.kan b{font:800 clamp(1.8rem,5vw,2.6rem)/1.1 "Shippori Mincho","Dela Gothic One",serif;color:var(--ac2);clip-path:inset(0 100% 0 0);transition:clip-path .7s ease-out}
+.in .kan b{clip-path:inset(0 0 0 0)}
+@media(max-width:600px){nav{display:none}.k{font-size:70vw}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="bar"></div><canvas id="petals" aria-hidden="true"></canvas><nav aria-label="Sections"></nav>
+
+<section data-t="hero" id="s0"><div class="sun" aria-hidden="true"></div>
+<div style="position:relative"><p class="jp">桜シフト · Sakura Shift</p>
+<h1>From temples<br>to turbo.</h1>
+<p class="lead" style="margin-top:1.5rem">How Japan holds tradition, food, anime and motorsport in one lifestyle. Scroll to cross the shift.</p></div>
+<div class="tick" aria-hidden="true"><div id="tk"></div></div></section>
+
+<div id="main"></div>
+
+<section data-t="end" id="send"><div class="k">桜</div>
+<div style="position:relative"><p class="jp">まとめ · Conclusion</p>
+<h2>One Japan,<br>many speeds.</h2>
+<p class="lead">A tea ceremony and a touge drift look like opposites. Japan treats both as craft, done with discipline and care. That is the Sakura Shift.</p>
+<p class="jp">ありがとうございました · Thank you</p></div></section>
+
+<script>
+(function(){
+var D=[
+{t:'culture',k:'和',jp:'文化 · Bunka',h:'Where old rules still run daily life',l:'Japan keeps tradition in everyday habits, not just in museums.',s:[[47,0,0,'','prefectures']],c:[
+['Tea ceremony','Chado is built on harmony, respect, purity and tranquillity. Every movement is planned.'],
+['Omotenashi','Hospitality given with no expectation of return. It is why tipping is not a thing in Japan.'],
+['Kimono','Worn at weddings, graduations and festivals, with the style changing by season.'],
+['Etiquette','Bow to greet, take shoes off indoors and keep quiet on trains.'],
+['Onsen','Hot spring bathing. You wash first, then soak.'],
+['Geisha and maiko','Kyoto’s performing artists in dance, music and tea.']],ph:'Culture'},
+{t:'trip',k:'旅',jp:'観光 · Kankō',h:'Places worth the flight',l:'From neon crossings to quiet mountain shrines.',s:[[3776,0,1,' m','Mt Fuji, Japan’s highest peak']],c:[
+['Fushimi Inari, Kyoto','Thousands of red torii gates climbing a forested mountain.'],
+['Mt Fuji','A sacred peak seen from Tokyo on clear days. Climbing season is in summer.'],
+['Shibuya Crossing, Tokyo','One of the busiest pedestrian crossings in the world.'],
+['Nara Park','Free-roaming deer that bow to ask for crackers.'],
+['Itsukushima, Hiroshima','The torii that seems to float at high tide.'],
+['Dotonbori, Osaka','A canal street of neon signs and street food.']],ph:'Tourist spot'},
+{t:'food',k:'食',jp:'食べ物 · Tabemono',h:'Food is a ritual',l:'Washoku was added to UNESCO’s intangible heritage list in 2013. Every region has a signature dish.',s:[[2013,0,0,'','UNESCO washoku listing']],c:[
+['Ramen','Tonkotsu in Fukuoka, shoyu in Tokyo, miso in Sapporo.'],
+['Sushi','Vinegared rice with fish, from Edo street food to a chef’s counter art.'],
+['Takoyaki','Octopus balls from Osaka, the city nicknamed Japan’s kitchen.'],
+['Okonomiyaki','A savoury cabbage pancake cooked on a hot plate.'],
+['Onigiri','Rice balls, the everyday snack from every convenience store.'],
+['Matcha and wagashi','Tea sweets shaped by the season. Say itadakimasu before eating.']],ph:'Food'},
+{t:'anime',k:'漫',jp:'アニメ・マンガ · Anime and manga',h:'Anime is a language',l:'Osamu Tezuka’s Astro Boy aired on TV in 1963 and shaped the style. Today anime and manga are among Japan’s biggest cultural exports.',s:[[1963,0,0,'','Astro Boy on TV']],c:[
+['Manga','Read right to left. Weekly magazines like Shonen Jump launch hits.'],
+['Studio Ghibli','Spirited Away won the Oscar for Best Animated Feature in 2003.'],
+['Shonen','Stories of friendship and effort, like Naruto, One Piece and Demon Slayer.'],
+['Akira','The 1988 film that showed the world anime was not just for kids.'],
+['Comiket','Tokyo’s giant fan convention where creators sell their own manga.'],
+['Pilgrimage','Fans visit real places that appear in their favourite shows.']],ph:'Anime and manga'},
+{t:'drift',k:'走',jp:'ドリフト · Dorifuto',h:'Tokyo drift is a culture',l:'Drifting grew out of Japan’s mountain touge roads. Keiichi Tsuchiya, the Drift King, turned it into a sport, and Initial D carried it worldwide.',s:[],c:[
+['Touge','Narrow mountain passes where street racers learned control over raw speed.'],
+['Toyota AE86','Light, rear-wheel drive and cheap. The hero car of Initial D.'],
+['Daikoku PA','The Yokohama parking area where car meets happen at night.'],
+['D1 Grand Prix','Japan’s pro drifting series, judged on angle, line and style.']],ph:'Tokyo drift',car:1},
+{t:'martial',k:'武',jp:'武道 · Budō',h:'The way of the warrior',l:'Japan gave the world many of its best-known martial arts, turning samurai combat into disciplines of character.',s:[[1882,0,0,'','Judo founded by Jigoro Kano'],[1964,0,0,'','Judo debuts at the Tokyo Olympics']],c:[
+['Judo','Founded in 1882 by Jigoro Kano, drawing on jujutsu. It became an Olympic sport at Tokyo 1964.'],
+['Karate','Developed in Okinawa, then the Ryukyu Kingdom, and later spread across Japan. It debuted at the Tokyo Games held in 2021.'],
+['Kendo','Fencing with bamboo swords and armour, descended from samurai swordsmanship.'],
+['Aikido','Created by Morihei Ueshiba. It redirects an attacker’s own force instead of meeting it.'],
+['Sumo','Japan’s national sport, full of Shinto ritual such as salt purification.'],
+['Iaido','Drawing and cutting with the sword in one controlled motion.'],
+['Kyudo','Japanese archery, where form, breathing and stillness matter as much as the hit.']],ph:'Martial arts'},
+{t:'f1',k:'鈴',jp:'フォーミュラワン · Formula 1',h:'Suzuka, the driver’s circuit',l:'Suzuka is a figure eight with a crossover bridge, unique on the F1 calendar. Honda built it in 1962.',s:[[1962,0,0,'','Suzuka opened'],[5.8,1,0,' km','lap length'],[1965,0,0,'','Honda’s first F1 win'],[330,0,0,' km/h','flat-out on a long straight']],c:[
+['Honda','Powered Red Bull to titles in the 2020s after its first win in 1965.'],
+['130R','Suzuka’s legendary fast corner.'],
+['Japanese drivers','From Kamui Kobayashi to Yuki Tsunoda, fans bring huge passion every race.']],ph:'F1'}
+];
+var main=document.getElementById('main'),h='';
+D.forEach(function(d,i){
+var st=d.s.map(function(s){return '<div><div class="num" data-n="'+s[0]+'" data-d="'+s[1]+'" data-c="'+s[2]+'" data-u="'+s[3]+'">0</div><small>'+s[4]+'</small></div>'}).join('');
+var cs=d.c.map(function(c){return '<div class="c" tabindex="0" role="button"><b>'+c[0]+'</b><span>'+c[1]+'</span></div>'}).join('');
+var car=d.car?'<div class="track"><div class="trail"></div><div class="car">🏎️</div></div>':'';
+h+='<section data-t="'+d.t+'" id="s'+(i+1)+'"><div class="k">'+d.k+'</div><div class="wrap" style="position:relative"><div><p class="jp">'+d.jp+'</p><h2>'+d.h+'</h2><p class="lead">'+d.l+'</p>'+(st?'<div class="stats">'+st+'</div>':'')+car+'<div class="grid">'+cs+'</div><p class="hint">Tap a card to open it.</p></div><figure class="ph" data-slot="'+d.ph+'"><div><b>'+d.k+'</b>Photo goes here<br>'+d.ph+'</div></figure></div></section>';
+});
+main.innerHTML=h;
+var words=['桜','寿司','祭り','ドリフト','アニメ','鈴鹿','富士山','ラーメン','着物'],tk='';
+for(var r=0;r<4;r++)words.forEach(function(w){tk+='<i>'+w+'</i>'});
+document.getElementById('tk').innerHTML=tk;
+var secs=[].slice.call(document.querySelectorAll('section')),nav=document.querySelector('nav');
+secs.forEach(function(s,i){var a=document.createElement('a');a.href='#'+s.id;a.setAttribute('aria-label','Section '+(i+1));nav.appendChild(a)});
+var dots=nav.querySelectorAll('a'),R=document.documentElement;
+function count(el){var n=+el.dataset.n,dc=+el.dataset.d,cm=+el.dataset.c,u=el.dataset.u,t0=null;
+function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/1400,1),v=n*(1-Math.pow(1-p,3));
+var s=v.toFixed(dc);if(cm)s=Number(s).toLocaleString('en-US');el.textContent=s+u;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+var cs=getComputedStyle(e.target);['bg','fg','ac','ac2'].forEach(function(v){R.style.setProperty('--'+v,cs.getPropertyValue('--'+v))});
+dots.forEach(function(d,i){d.classList.toggle('on',secs[i]===e.target)});
+e.target.classList.add('in');var tt=e.target.dataset.t;if(typeof FXR!=='undefined'&&FXR[tt])FXR[tt](e.target);e.target.querySelectorAll('.num').forEach(function(n){if(tt!=='f1'&&!n.dataset.done){n.dataset.done=1;count(n)}})}})},{threshold:.4});
+secs.forEach(function(s){io.observe(s)});
+document.querySelectorAll('.c').forEach(function(c){
+c.addEventListener('click',function(){c.classList.toggle('open')});
+c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();c.classList.toggle('open')}})});
+var drift=document.querySelector('[data-t=drift]'),car=drift.querySelector('.car'),tr=drift.querySelector('.trail'),trk=drift.querySelector('.track'),bar=document.getElementById('bar'),lastY=0;
+function sc(){var y=scrollY,m=document.body.scrollHeight-innerHeight;bar.style.width=(m>0?y/m*100:0)+'%';
+var b=drift.getBoundingClientRect(),p=Math.max(0,Math.min(1,(innerHeight-b.top)/(innerHeight+b.height*.5))),w=trk.clientWidth-60;
+car.style.left=p*w+'px';tr.style.width=p*w+'px';car.style.transform='rotate('+Math.max(-18,Math.min(18,(y-lastY)*-1.2))+'deg)';lastY=y}
+addEventListener('scroll',sc,{passive:true});sc();
+var RM=matchMedia('(prefers-reduced-motion:reduce)').matches,Q=function(t){return document.querySelector('[data-t='+t+']')};
+function add(t,h){Q(t).insertAdjacentHTML('afterbegin',h)}
+function rep(n,f){var s='';for(var i=0;i<n;i++)s+=f(i);return s}
+add('culture','<canvas class="fxc" id="fw"></canvas><div class="fxl">'+rep(9,function(i){return '<i class="lan" style="left:'+(5+i*11)+'%;animation-delay:'+(-i*2.1)+'s;animation-duration:'+(14+i%3*4)+'s"></i>'})+'</div>');
+Q('culture').querySelector('.hint').textContent='Tap a card to open it. Tap anywhere else for fireworks.';
+add('trip','<div class="sky"></div><div class="fxl">'+rep(7,function(){return '<i class="tor"></i>'})+'</div><svg class="fuji" viewBox="0 0 400 200" aria-hidden="true"><path d="M0 200L150 40L200 20L250 40L400 200Z" fill="#274b6d"/><path d="M165 60L200 20L235 60L220 52L205 66L190 54L178 64Z" fill="#fff"/></svg><i class="cld c1"></i><i class="cld c2"></i>');
+add('food','<div class="bowl" aria-hidden="true"><i class="st"></i><i class="st"></i><i class="st"></i>🍜</div>');
+add('anime','<div class="ht"></div><div class="spd"></div><b class="snd s1">ドン!</b><b class="snd s2">ゴゴゴ</b><b class="snd s3">バーン!</b>');
+add('drift','<div class="fxl">'+rep(5,function(i){return '<i class="str" style="top:'+(12+i*17)+'%;animation-delay:'+(-i*.9)+'s;animation-duration:'+(1.6+i%3*.6)+'s"></i>'})+'</div>');
+Q('f1').querySelector('h2').insertAdjacentHTML('afterend','<div class="lights" aria-hidden="true">'+rep(5,function(){return '<i></i>'})+'</div>');
+Q('f1').insertAdjacentHTML('beforeend','<div class="flagw"><div class="flag"></div></div>');
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.firstChild.classList.add('wipe')})},{threshold:.5}).observe(Q('f1').querySelector('.flagw'));
+add('martial','<i class="slash"></i>');
+var kn=['柔道','空手','剣道','合気道','相撲','居合道','弓道'];
+Q('martial').querySelector('.lead').insertAdjacentHTML('afterend','<div class="kan" aria-hidden="true">'+kn.map(function(k,i){return '<b style="transition-delay:'+(.9+i*.25)+'s">'+k+'</b>'}).join('')+'</div>');
+var fc=document.getElementById('fw'),fx=fc.getContext('2d'),FP=[],run=0;
+function fr(){fc.width=fc.parentNode.clientWidth;fc.height=fc.parentNode.clientHeight}fr();addEventListener('resize',fr);
+function fl(){fx.clearRect(0,0,fc.width,fc.height);FP=FP.filter(function(p){return p.l>0});FP.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.04;p.vx*=.985;p.l-=.014;fx.fillStyle='hsla('+p.h+',90%,60%,'+p.l+')';fx.beginPath();fx.arc(p.x,p.y,2.2,0,6.3);fx.fill()});if(FP.length)requestAnimationFrame(fl);else run=0}
+function burst(px,py){var h=Math.random()*360;for(var i=0;i<46;i++){var a=Math.PI*2*i/46,v=2+Math.random()*3;FP.push({x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,h:h})}if(!run){run=1;fl()}}
+Q('culture').addEventListener('click',function(e){if(e.target.closest('.c'))return;var r=fc.getBoundingClientRect();burst(e.clientX-r.left,e.clientY-r.top)});
+var trip=Q('trip'),tors=trip.querySelectorAll('.tor'),fj=trip.querySelector('.fuji'),dr=Q('drift'),trk2=dr.querySelector('.track'),car2=dr.querySelector('.car'),ly=scrollY,lt=0;
+function pr(el){var b=el.getBoundingClientRect();return Math.max(0,Math.min(1,(innerHeight-b.top)/(innerHeight+b.height)))}
+function fx2(){var p=pr(trip);trip.style.setProperty('--p',p);fj.style.transform='translateY('+(60-p*60)+'%)';
+tors.forEach(function(t,i){var s=(i/tors.length+p*1.6)%1;t.style.transform='scale('+(.08+s*2.4)+')';t.style.opacity=Math.sin(s*Math.PI)*.5});
+var v=Math.abs(scrollY-ly);ly=scrollY;var b=dr.getBoundingClientRect(),now=Date.now();
+if(!RM&&b.top<innerHeight*.7&&b.bottom>innerHeight*.3){if(v>6&&now-lt>70){lt=now;var m=document.createElement('i');m.className='smoke';m.style.left=(car2.offsetLeft+6)+'px';trk2.appendChild(m);setTimeout(function(){m.remove()},950)}
+if(v>28){dr.classList.add('shake');setTimeout(function(){dr.classList.remove('shake')},360)}}}
+addEventListener('scroll',fx2,{passive:true});fx2();
+var FXR={culture:function(){if(RM)return;fr();[0,500,1000].forEach(function(d,i){setTimeout(function(){burst(fc.width*(.25+i*.25),fc.height*.3)},d)})},
+f1:function(s){if(s.dataset.seq)return;s.dataset.seq=1;var ls=s.querySelectorAll('.lights i'),n=s.querySelectorAll('.num');
+if(RM){n.forEach(function(x){count(x)});return}
+ls.forEach(function(l,i){setTimeout(function(){l.classList.add('on')},500+i*600)});
+setTimeout(function(){ls.forEach(function(l){l.classList.remove('on')});s.classList.add('go');n.forEach(function(x){x.dataset.done=1;count(x)})},500+5*600+700)}};
+
+if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var cv=document.getElementById('petals'),x=cv.getContext('2d'),P=[],W,H;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener('resize',rs);
+for(var i=0;i<26;i++)P.push({x:Math.random()*W,y:Math.random()*H,s:4+Math.random()*6,v:.5+Math.random()*1.2,r:Math.random()*6,d:Math.random()*2-1});
+(function f(){x.clearRect(0,0,W,H);
+P.forEach(function(p){p.y+=p.v;p.x+=Math.sin(p.r)*.6+p.d*.3;p.r+=.02;if(p.y>H+10){p.y=-10;p.x=Math.random()*W}
+x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle='rgba(255,170,195,.75)';x.beginPath();x.ellipse(0,0,p.s,p.s/1.8,0,0,6.3);x.fill();x.restore()});
+requestAnimationFrame(f)})();
+})();
+</script>
+</body>
+</html>
